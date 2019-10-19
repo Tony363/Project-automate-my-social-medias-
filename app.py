@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 from bs4 import BeautifulSoup
 import time
 
@@ -12,13 +13,17 @@ class TwitterBot:
     
     def login(self):
         bot = self.bot
-        bot.get('https://twitter.com/')
+        bot.get('https://twitter.com/login')
         time.sleep(3)
         email = bot.find_element_by_name('session[username_or_email]')
-        password = bot.find_element_by_name('session[password]')  
+        password = bot.find_element_by_name('session[password]')
+        
         email.clear()
+        time.sleep(1)
         password.clear()
+        time.sleep(1)
         email.send_keys(self.username)
+        time.sleep(1)
         password.send_keys(self.password)
         password.send_keys(Keys.RETURN)
         
