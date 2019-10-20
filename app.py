@@ -33,8 +33,15 @@ class TwitterBot:
         for i in range(1,3):
             bot.execute_script('window.scrollTo(0,document.body.scrollHeight)')
             time.sleep(2)
-            bot.find_element_by_css_selector('.css-1dbjc4n[data-testid="tweet"]').click()
-            print(bot.current_url)
+            like_button = bot.find_element_by_tag_name('g')
+            like_button.click()
+            # for button in like_button:
+            #     print(button)
+            #     button.click()
+                
+
+         
+            # print(bot.current_url())
             
 
 
