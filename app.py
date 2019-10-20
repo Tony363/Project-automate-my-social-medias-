@@ -15,15 +15,14 @@ class TwitterBot:
         bot = self.bot
         bot.get('https://twitter.com/login')
         time.sleep(3)
-        email = bot.find_element_by_name('session[username_or_email]')
-        password = bot.find_element_by_name('session[password]')
+        email = bot.find_element_by_class_name("js-username-field")
+        password = bot.find_element_by_class_name('js-password-field')
         
         email.clear()
-        time.sleep(1)
         password.clear()
-        time.sleep(1)
+        
+        time.sleep(3)
         email.send_keys(self.username)
-        time.sleep(1)
         password.send_keys(self.password)
         password.send_keys(Keys.RETURN)
         
