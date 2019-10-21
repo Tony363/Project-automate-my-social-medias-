@@ -1,8 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
-from bs4 import BeautifulSoup
+from selenium.webdriver.support.ui import WebDriverWait
 import time
+
+def find(bot):
+    element = bot.find_element_by_class_name("css-1dbjc4n r-xoduu5")
+    if element:
+        return element
+    else:
+        return False
 
 
 class TwitterBot:
@@ -33,8 +39,10 @@ class TwitterBot:
         for i in range(1,3):
             bot.execute_script('window.scrollTo(0,document.body.scrollHeight)')
             time.sleep(2)
-            like_button = bot.find_element_by_tag_name('g')
-            like_button.click()
+            tweet = WebDriverWait(bot, 3).until(find)
+            
+            for elements in tweet:
+                elements.click()
             # for button in like_button:
             #     print(button)
             #     button.click()
