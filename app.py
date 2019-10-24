@@ -3,12 +3,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 import time
 
-def find(bot):
-    element = bot.find_element_by_class_name("css-1dbjc4n r-xoduu5")
-    if element:
-        return element
-    else:
-        return False
+# def find(bot):
+#     element = bot.find_element_by_class_name("g")
+#     if element:
+#         return element
+#     else:
+#         return False
 
 
 class TwitterBot:
@@ -38,15 +38,19 @@ class TwitterBot:
         time.sleep(3)
         for i in range(1,3):
             bot.execute_script('window.scrollTo(0,document.body.scrollHeight)')
-            time.sleep(2)
-            tweet = WebDriverWait(bot, 3).until(find)
+            time.sleep(3)
+            tweets = bot.find_elements_by_css_selector('div[data-testid="like"]')
+            for tweet in tweets:
+                bot.execute_script("arguments[0].click();", tweet)
+
+        
+        # for tweet in tweets:
+        #     tweet.click()
+        #     print(tweet)
+        # for button in like_button:
+        #     print(button)
+        #     button.click()
             
-            for elements in tweet:
-                elements.click()
-            # for button in like_button:
-            #     print(button)
-            #     button.click()
-                
 
          
             # print(bot.current_url())
